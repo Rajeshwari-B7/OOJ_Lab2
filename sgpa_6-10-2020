@@ -1,0 +1,86 @@
+import java.util.Scanner;
+class Student
+{
+  
+   String usn,name;
+   int credits[];
+   float marks[];
+   int n;
+   float tot=0;
+   Student()
+   {
+	   Scanner sc=new Scanner(System.in);
+	   System.out.println("Enter the number of subjects");
+	   n=sc.nextInt();
+	   credits=new int[n];
+	   marks=new float[n];
+	   usn="";
+	   name="";
+   }
+    void Accept()
+    {
+	    Scanner sc=new Scanner(System.in);
+      	System.out.println("Enter your USN and Name");
+        usn=sc.nextLine();
+        name=sc.nextLine();
+        System.out.println("Enter credits and marks for each subject");
+        for(int i=0;i<n;i++)
+		{
+          credits[i]=sc.nextInt();
+          marks[i]=sc.nextFloat();
+		}
+	}
+    void Calculate()
+	{
+	  int s=0;
+	  int m=0;
+	  float a=0;
+	  
+	
+      for(int i=0;i<n;i++)
+	  {	
+        if(marks[i]>=90)
+			 m=10;
+		else if(marks[i]<90 && marks[i]>=80)
+			 m=9;
+		else if(marks[i]<80 && marks[i]>=70)
+			 m=8;
+		else if(marks[i]<70 && marks[i]>=60)
+			 m=7;
+		
+	    else if(marks[i]<60 && marks[i]>=50)
+			 m=5;
+		else if(marks[i]<50 && marks[i]>=40)
+			 m=4;
+		else if(marks[i]<40)
+			 m=0;
+        		  
+        s=s+credits[i];
+		a=a+(credits[i]*m);
+		
+	  }
+	  tot=a/s;
+	}
+	void Display()
+	{
+		System.out.println("The details of the student");
+	    System.out.println("USN:"+usn+"   Name:"+name);
+		System.out.println("Credits and Marks");
+		 for(int i=0;i<n;i++)
+		{
+          System.out.println(credits[i]+"  "+marks[i]);
+          
+		}
+		System.out.printf("SGPA  %.2f",tot);
+	}
+}
+class StudentMain
+{
+	public static void main(String args[])
+	{
+		Student s1=new Student();
+		s1.Accept();
+		s1.Calculate();
+		s1.Display();
+	}
+}
